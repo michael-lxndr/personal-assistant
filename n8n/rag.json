@@ -1,0 +1,471 @@
+{
+  "name": "rag",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "5419d53e-8960-434f-b83d-980f92fd5e04",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        660,
+        600
+      ],
+      "id": "4c4b786f-63d4-4d11-ba8b-548d9e32dcfe",
+      "name": "Webhook",
+      "webhookId": "5419d53e-8960-434f-b83d-980f92fd5e04"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        800,
+        820
+      ],
+      "id": "0369611d-66f3-4452-a516-8419c826d6fa",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zED4gG84FchbkEcA",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=CON EL CONTEXTO DADON EN EL \"SYSTEM\" devueve una lista q n8n pueda parsear a json de: {{ $json.body }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=eres un agente ai, tu objetivo es ayudar a realizar consultas a una base de datos sql y tiene que devolover minimo 1 sinonimo o que este relacianado y maximo 12 sinonimos o que esten relacianadas tiene q ser una lista de palabras individuale \"{{ $json.body }}\"): {{ $json.body }}\n\n¡DEVUEVEME SOLO EN FORMATO: ARRAY!\n<<ejemplo\nte pregunta por \"batidos chocolatados\"\nlo que deverias devolver: chocolate, leche, cacao, Azúcar...>>\nTIENE Q SER FACILMETE processable POR N8N!!!\n\nsuigue este esquema json (\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"output\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\" // <= aqui va la lista de \"{{ $json.body }}\"\n      }\n    }\n  }\n}\n\n)\no este json (\nreturn [\n  {\n    json: {\n      output: [\"valor1\", \"valor2\"] // Asegura que sea un array de strings\n    }\n  }\n];\n\n)"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        860,
+        600
+      ],
+      "id": "f99c448b-4238-49b4-b3cc-fbcaa0aa1312",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6e813ac4-a348-4a0b-901e-61641c739b39",
+              "name": "output.output.values[0]",
+              "value": "={{ $json.output.output.values[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "9129910f-6f47-47cb-9f35-70d109b8f212",
+              "name": "output.output.values[1]",
+              "value": "={{ $json.output.output.values[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "caefd112-b69d-40c6-8085-8cb177ec6c9c",
+              "name": "output.output.values[2]",
+              "value": "={{ $json.output.output.values[2] }}",
+              "type": "string"
+            },
+            {
+              "id": "e4aed6c3-505d-469c-985f-4c80ffb56577",
+              "name": "output.output.values[3]",
+              "value": "={{ $json.output.output.values[3] }}",
+              "type": "string"
+            },
+            {
+              "id": "d4f029b4-3ed4-4a77-af46-00bb5e542a00",
+              "name": "output.output.values[4]",
+              "value": "={{ $json.output.output.values[4] }}",
+              "type": "string"
+            },
+            {
+              "id": "61b69be3-2193-49eb-b1ee-4e9ac84e2324",
+              "name": "output.output.values[5]",
+              "value": "={{ $json.output.output.values[5] }}",
+              "type": "string"
+            },
+            {
+              "id": "31a247b2-13db-418a-8985-bf0948389f19",
+              "name": "output.output.values[6]",
+              "value": "={{ $json.output.output.values[6] }}",
+              "type": "string"
+            },
+            {
+              "id": "e24ea4ca-c2c8-4bb9-9240-c0a468bf84c2",
+              "name": "output.output.values[7]",
+              "value": "={{ $json.output.output.values[7] }}",
+              "type": "string"
+            },
+            {
+              "id": "c999978a-d30a-4bdc-b581-c375f6a0e74e",
+              "name": "output.output.values[8]",
+              "value": "={{ $json.output.output.values[8] }}",
+              "type": "string"
+            },
+            {
+              "id": "bc3797e9-7c3c-441a-bc7e-aa24aed4afb6",
+              "name": "output.output.values[9]",
+              "value": "={{ $json.output.output.values[9] }}",
+              "type": "string"
+            },
+            {
+              "id": "77000b06-f784-4c23-a0de-39caf91b886a",
+              "name": "output.output.values[10]",
+              "value": "={{ $json.output.output.values[10] }}",
+              "type": "string"
+            },
+            {
+              "id": "254964a3-affc-4b2d-88ac-a08ce8b55c7f",
+              "name": "output.output.values[11]",
+              "value": "={{ $json.output.output.values[11] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        600
+      ],
+      "id": "f7a2dc91-a5d1-4f5a-b94c-76666cd3381c",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8080/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-File-Type",
+              "value": "keywords"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"output\": [\n    \"{{ $json.output.output.values[0] }}\",\n    \"{{ $json.output.output.values[1] }}\",\n    \"{{ $json.output.output.values[2] }}\",\n    \"{{ $json.output.output.values[3] }}\",\n    \"{{ $json.output.output.values[4] }}\",\n    \"{{ $json.output.output.values[5] }}\",\n    \"{{ $json.output.output.values[6] }}\",\n    \"{{ $json.output.output.values[7] }}\",\n    \"{{ $json.output.output.values[8] }}\",\n    \"{{ $json.output.output.values[9] }}\",\n    \"{{ $json.output.output.values[10] }}\",\n    \"{{ $json.output.output.values[11] }}\"\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1600,
+        600
+      ],
+      "id": "7e0821b6-9867-4969-87cd-1ba450d1189e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        600
+      ],
+      "id": "14326fa5-9ccd-4f92-b260-59089a0043da",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "RAG",
+          "mode": "list",
+          "cachedResultName": "RAG"
+        },
+        "prompt": "={{ $json.value }}",
+        "topK": 2,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        600
+      ],
+      "id": "1055f91e-5780-48bd-95aa-6facf6fbe36c",
+      "name": "Qdrant Vector Store1",
+      "credentials": {
+        "qdrantApi": {
+          "id": "sFfERYppMeBnFNeA",
+          "name": "Local QdrantApi database"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        900
+      ],
+      "id": "9a0a7b5f-1243-4c83-b28e-877d90a1ee89",
+      "name": "Embeddings Ollama1",
+      "credentials": {
+        "ollamaApi": {
+          "id": "xHuYe0MDGOs9IpBW",
+          "name": "Local Ollama service"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        600
+      ],
+      "id": "f3fd5ef0-4223-4c46-a48e-6d8566af690d",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8080/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-File-Type",
+              "value": "rag"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=output",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3380,
+        600
+      ],
+      "id": "20915a0f-b214-4560-b79d-218112b0ddbd",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"output\": {\n    \"values\": [\n      \"vino\",\n      \"tinto\",\n      \"blanco\",\n      \"rosado\",\n      \"mosto\",\n      \"zumo de uva\",\n      \"bebida alcohólica\",\n      \"fermentado de uva\",\n      \"caldo\",\n      \"vino de mesa\",\n      \"vino fino\",\n      \"cosecha\"\n    ]\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        820
+      ],
+      "id": "a9166eca-4435-4320-98bd-a1790dad11e5",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $json[\"output\"][\"list\"] || []; // Asegura que haya datos\nconsole.log(\"Input Data:\", inputData); // Para depuración\n\nif (!Array.isArray(inputData)) {\n  throw new Error(\"La entrada no es un array.\");\n}\n\n// Filtrar valores nulos o indefinidos y mapear los elementos válidos\nreturn inputData\n  .filter(item => typeof item === \"string\") // Solo tomar strings válidos\n  .map(item => ({\n    json: { value: item.trim().toLowerCase() }\n  }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        600
+      ],
+      "id": "8df79ea2-d2fb-4585-8776-3944922334ef",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"output\": {\n    \"list\": [\n      \"{{ $('Edit Fields2').item.json.output.output.values[0] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[1] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[2] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[3] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[4] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[5] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[6] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[7] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[8] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[9] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[10] }}\",\n      \"{{ $('Edit Fields2').item.json.output.output.values[11] }}\"\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1900,
+        600
+      ],
+      "id": "a1653ae3-3929-4885-9d81-9e18d48014e8",
+      "name": "Edit Fields3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fb021ea0-8711-4182-b950-16ccb3196f8c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  },
+  "id": "IXbhJfoY9zUrY1X4",
+  "tags": []
+}
