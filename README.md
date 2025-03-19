@@ -44,8 +44,6 @@ cd self-hosted-ai-starter-kit
 ### Running n8n using Docker Compose
 
 ```bash
-git clone https://github.com/michael-lxndr/personal-assistant.git
-cd self-hosted-ai-starter-kit
 docker compose up
 ```
 
