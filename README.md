@@ -16,9 +16,6 @@ quickly get started with building self-hosted AI workflows.
 ✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
 integrations and advanced AI components
 
-✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
-and run the latest local LLMs
-
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
 store with an comprehensive API
 
@@ -48,7 +45,7 @@ cd self-hosted-ai-starter-kit
 
 #### For Nvidia GPU users
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose --profile gpu-nvidia up
@@ -60,7 +57,7 @@ docker compose --profile gpu-nvidia up
 
 ### For AMD GPU users on Linux
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose --profile gpu-amd up
@@ -80,7 +77,7 @@ If you want to run Ollama on your mac, check the
 [Ollama homepage](https://ollama.com/)
 for installation instructions, and run the starter kit as follows:
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose up
@@ -107,7 +104,7 @@ Additionally, after you see "Editor is now accessible via: <http://localhost:567
 
 #### For everyone else
 
-```
+```bash
 git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose --profile cpu up
@@ -145,7 +142,7 @@ language model and Qdrant as your vector store.
 
 ## Upgrading
 
-* ### For Nvidia GPU setups:
+* ### For Nvidia GPU setups
 
 ```bash
 docker compose --profile gpu-nvidia pull
@@ -154,12 +151,12 @@ docker compose create && docker compose --profile gpu-nvidia up
 
 * ### For Mac / Apple Silicon users
 
-```
+```bash
 docker compose pull
 docker compose create && docker compose up
 ```
 
-* ### For Non-GPU setups:
+* ### For Non-GPU setups
 
 ```bash
 docker compose --profile cpu pull
