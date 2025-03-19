@@ -38,7 +38,7 @@ Engineering world, handles large amounts of data safely.
 
 ```bash
 git clone https://github.com/michael-lxndr/personal-assistant.git
-cd self-hosted-ai-starter-kit
+cd personal-assistant
 ```
 
 ### Running n8n using Docker Compose
