@@ -3,20 +3,14 @@ volumes:
   postgres_storage:
   ollama_storage:
   qdrant_storage:
-  n8n_data:
-
 
 networks:
   demo:
-    driver: bridge
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
   networks: ['demo']
   environment:
-    - WEBHOOK_URL=${URL}
-    - TZ=${TIMEZONE}
-    - GENERIC_TIMEZONE=${TIMEZONE}
     - DB_TYPE=postgresdb
     - DB_POSTGRESDB_HOST=postgres
     - DB_POSTGRESDB_USER=${POSTGRES_USER}
@@ -60,8 +54,6 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_storage:/var/lib/postgresql/data
     healthcheck:
@@ -90,10 +82,9 @@ services:
     container_name: n8n
     restart: unless-stopped
     ports:
-      - "5678:5678"
+      - 5678:5678
     volumes:
       - n8n_storage:/home/node/.n8n
-      - n8n_data:/home/node/.n8n
       - ./n8n/backup:/backup
       - ./shared:/data/shared
     depends_on:
@@ -102,20 +93,6 @@ services:
       n8n-import:
         condition: service_completed_successfully
 
-  ngrok:
-    container_name: ngrok
-    image: ngrok/ngrok:latest
-    environment:
-      - NGROK_AUTHTOKEN=${NGROK_TOKEN}
-    command:
-      - "start"
-      - "--all"
-      - "--config"
-      - "/etc/ngrok.yml"
-    networks: ['demo']
-    volumes:
-      - ./ngrok.yml:/etc/ngrok.yml
-
   qdrant:
     image: qdrant/qdrant
     hostname: qdrant
@@ -123,7 +100,7 @@ services:
     networks: ['demo']
     restart: unless-stopped
     ports:
-      - "6333:6333"
+      - 6333:6333
     volumes:
       - qdrant_storage:/qdrant/storage
 
@@ -167,4 +144,4 @@ services:
     <<: *init-ollama
     image: ollama/ollama:rocm
     depends_on:
-      - ollama-gpu-amd
+     - ollama-gpu-amd

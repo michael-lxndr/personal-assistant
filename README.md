@@ -40,15 +40,17 @@ Engineering world, handles large amounts of data safely.
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/michael-lxndr/rag-search.git
-cd rag-search
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 ```
 
 ### Running n8n using Docker Compose
 
 #### For Nvidia GPU users
 
-```bash
+```
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 docker compose --profile gpu-nvidia up
 ```
 
@@ -58,7 +60,9 @@ docker compose --profile gpu-nvidia up
 
 ### For AMD GPU users on Linux
 
-```bash
+```
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 docker compose --profile gpu-amd up
 ```
 
@@ -76,7 +80,9 @@ If you want to run Ollama on your mac, check the
 [Ollama homepage](https://ollama.com/)
 for installation instructions, and run the starter kit as follows:
 
-```bash
+```
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 docker compose up
 ```
 
@@ -101,7 +107,9 @@ Additionally, after you see "Editor is now accessible via: <http://localhost:567
 
 #### For everyone else
 
-```bash
+```
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 docker compose --profile cpu up
 ```
 
@@ -146,7 +154,7 @@ docker compose create && docker compose --profile gpu-nvidia up
 
 * ### For Mac / Apple Silicon users
 
-```bash
+```
 docker compose pull
 docker compose create && docker compose up
 ```
