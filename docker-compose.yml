@@ -11,6 +11,8 @@ x-n8n: &service-n8n
   image: n8nio/n8n:latest
   networks: ['demo']
   environment:
+    - N8N_HOST=${DOMAIN}
+    - WEBHOOK_TUNNEL_URL=${URL}
     - WEBHOOK_URL=${URL}
     - TZ=${TIMEZONE}
     - GENERIC_TIMEZONE=${TIMEZONE}
