@@ -2,7 +2,7 @@
 
 **Self-hosted AI Starter Kit** is an open-source Docker Compose template designed to swiftly initialize a comprehensive local AI and low-code development environment.
 
-![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/self-hosted-ai-starter-kit/main/assets/n8n-demo.gif)
+![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/personal-assistant/main/assets/n8n-demo.gif)
 
 Curated by <https://github.com/n8n-io>, it combines the self-hosted n8n
 platform with a curated list of compatible AI products and components to
@@ -15,6 +15,9 @@ quickly get started with building self-hosted AI workflows.
 
 ✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
 integrations and advanced AI components
+
+✅ [**Ollama**](https://ollama.com/) - Cross-platform LLM platform to install
+and run the latest local LLMs
 
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
 store with an comprehensive API
@@ -46,8 +49,8 @@ cd personal-assistant
 #### For Nvidia GPU users
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
-cd self-hosted-ai-starter-kit
+git clone https://github.com/michael-lxndr/personal-assistant.git
+cd personal-assistant
 docker compose --profile gpu-nvidia up
 ```
 
@@ -58,8 +61,8 @@ docker compose --profile gpu-nvidia up
 ### For AMD GPU users on Linux
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
-cd self-hosted-ai-starter-kit
+git clone https://github.com/michael-lxndr/personal-assistant.git
+cd personal-assistant
 docker compose --profile gpu-amd up
 ```
 
@@ -78,8 +81,8 @@ If you want to run Ollama on your mac, check the
 for installation instructions, and run the starter kit as follows:
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
-cd self-hosted-ai-starter-kit
+git clone https://github.com/michael-lxndr/personal-assistant.git
+cd personal-assistant
 docker compose up
 ```
 
@@ -105,10 +108,10 @@ Additionally, after you see "Editor is now accessible via: <http://localhost:567
 #### For everyone else
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
-cd self-hosted-ai-starter-kit
+git clone https://github.com/michael-lxndr/personal-assistant.git
+cd personal-assistant
 docker compose --profile cpu up
-
+```
 
 ## ⚡️ Quick start and usage
 
