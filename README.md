@@ -11,7 +11,7 @@ quickly get started with building self-hosted AI workflows.
 > [!TIP]
 > [Read the announcement](https://blog.n8n.io/self-hosted-ai/)
 
-### What’s included
+## What’s included
 
 ✅ [**Self-hosted n8n**](https://n8n.io/) - Low-code platform with over 400
 integrations and advanced AI components
@@ -43,9 +43,72 @@ cd personal-assistant
 
 ### Running n8n using Docker Compose
 
+#### For Nvidia GPU users
+
 ```bash
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
+docker compose --profile gpu-nvidia up
+```
+
+> [!NOTE]
+> If you have not used your Nvidia GPU with Docker before, please follow the
+> [Ollama Docker instructions](https://github.com/ollama/ollama/blob/main/docs/docker.md).
+
+### For AMD GPU users on Linux
+
+```bash
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
+docker compose --profile gpu-amd up
+```
+
+#### For Mac / Apple Silicon users
+
+If you’re using a Mac with an M1 or newer processor, you can't expose your GPU
+to the Docker instance, unfortunately. There are two options in this case:
+
+1. Run the starter kit fully on CPU, like in the section "For everyone else"
+   below
+2. Run Ollama on your Mac for faster inference, and connect to that from the
+   n8n instance
+
+If you want to run Ollama on your mac, check the
+[Ollama homepage](https://ollama.com/)
+for installation instructions, and run the starter kit as follows:
+
+```bash
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
 docker compose up
 ```
+
+##### For Mac users running OLLAMA locally
+
+If you're running OLLAMA locally on your Mac (not in Docker), you need to modify the OLLAMA_HOST environment variable
+in the n8n service configuration. Update the x-n8n section in your Docker Compose file as follows:
+
+```yaml
+x-n8n: &service-n8n
+  # ... other configurations ...
+  environment:
+    # ... other environment variables ...
+    - OLLAMA_HOST=host.docker.internal:11434
+```
+
+Additionally, after you see "Editor is now accessible via: <http://localhost:5678/>":
+
+1. Head to <http://localhost:5678/home/credentials>
+2. Click on "Local Ollama service"
+3. Change the base URL to "<http://host.docker.internal:11434/>"
+
+#### For everyone else
+
+```bash
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
+docker compose --profile cpu up
+
 
 ## ⚡️ Quick start and usage
 
@@ -132,7 +195,7 @@ allows n8n to access files on disk. This folder within the n8n container is
 located at `/data/shared` -- this is the path you’ll need to use in nodes that
 interact with the local filesystem.
 
-**Nodes that interact with the local filesystem**
+### Nodes that interact with the local filesystem
 
 - [Read/Write Files from Disk](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.filesreadwrite/)
 - [Local File Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.localfiletrigger/)
