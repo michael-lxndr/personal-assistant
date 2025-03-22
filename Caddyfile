@@ -3,11 +3,6 @@
     email {$LETSENCRYPT_EMAIL}
 }
 
-#db
-{$DB_HOSTNAME} {
-    reverse_proxy localhost:7770
-}
-
 # N8N
 {$N8N_HOSTNAME} {
     # For domains, Caddy will automatically use Let's Encrypt
