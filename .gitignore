@@ -2,6 +2,3 @@
 .env.test
 volumes/
 shared/
-supabase/
-searxng/uwsgi.ini
-searxng/settings.yml
